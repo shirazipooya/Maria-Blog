@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="h-100">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- CSS only -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.rtl.min.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+
+    <!-- favicon -->
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='images/favicon/favicon.ico') }}"
+      type="image/x-icon"
+    />
+
+    {% if title %}
+    <title>وبلاگ ماریا - {{ title }}</title>
+    {% else %}
+    <title>وبلاگ ماریا</title>
+    {% endif %}
+  </head>
+  <body class="d-flex flex-column h-100">
+    <!-- Header -->
+    {% include "header.html" %}
+
+    <!-- Main -->
+    <main role="main" class="container flex-shrink-0">
+      <div class="row">
+        {% with messages = get_flashed_messages(with_categories = true) %} {% if messages %} {% for cat, msg in messages
+        %}
+        <div class="alert alert-{{ cat }}">{{ msg }}</div>
+        {% endfor %} {% endif %} {% endwith %} {% block slider %} {% endblock slider %}
+      </div>
+      <div class="row">
+        <div class="col-md-9">{% block content %}{% endblock %}</div>
+        <!-- Sidebar -->
+        <div class="col-md-3">{% include "sidebar.html" %}</div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    {% include 'footer.html' %}
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.js') }}"></script>
+  </body>
+</html>

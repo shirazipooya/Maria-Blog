@@ -1,0 +1,47 @@
+{% extends "layout.html" %} {% block content %}
+
+<div class="content-section w-50">
+  <form method="POST" action="">
+    {{ form.hidden_tag() }}
+    <fieldset class="form-group">
+      <div class="form-group mt-2">
+        {{ form.username.label(class="form-control-label") }} {% if form.username.errors %} {{
+        form.username(class="form-control form-control-lg is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.username.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %} {{ form.username(class="form-control form-control-lg") }} {% endif %}
+      </div>
+
+      <div class="form-group mt-2">
+        {{ form.password.label(class="form-control-label") }} {% if form.password.errors %} {{
+        form.password(class="form-control form-control-lg is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.password.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %} {{ form.password(class="form-control form-control-lg") }} {% endif %}
+      </div>
+
+      <div class="form-check mt-2">
+        {{ form.remember(class="form-check-input") }} {{ form.remember.label(class="form-check-label") }}
+      </div>
+
+      <div class="form-group mt-3 text-center">{{ form.submit(class="btn btn-outline-info") }}</div>
+      <small class="text-muted ml-2 my-2">
+        <a href="#">گذرواژه خود را فراموش کرده‌اید؟</a>
+      </small>
+    </fieldset>
+  </form>
+</div>
+
+<div class="border-top w-50 pt-3">
+  <small class="text-muted">
+    شما ثبت نام نکرده‌اید؟ <a class="ml-2" href="{{ url_for('register') }}">ثبت نام</a>
+  </small>
+</div>
+
+{% endblock content %}
